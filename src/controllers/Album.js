@@ -5,7 +5,13 @@ import AlbumService from '../database/services/Album';
 class AlbumController {
   static async NewAlbum(req, res) {
     try {
-      const newAlbum = await AlbumService.addAlbum(req.body);
+      const album = {
+        cover: req.file.filename,
+        albumname: req.body.playlist,
+        description: req.body.description
+
+      };
+      const newAlbum = await AlbumService.addAlbum(album);
       return out(res, 200, 'Album', newAlbum);
     } catch (error) {
       return out(res, 500, error.message || error, null, 'SERVER_ERROR');

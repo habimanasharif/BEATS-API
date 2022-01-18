@@ -43,5 +43,18 @@ app.get('/song/play/:filename', (req, res) => {
     readstream.pipe(res);
   });
 });
+app.get('/image/view/:filename', (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: 'No file exists'
+      });
+    }
+    // Read output to browser
+    const readstream = gfs.createReadStream(file.filename);
+    readstream.pipe(res);
+  });
+});
 
 export default app;

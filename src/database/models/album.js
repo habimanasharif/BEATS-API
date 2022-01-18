@@ -6,6 +6,10 @@ const AlbumSchema = new Schema({
     type: String,
     required: true
   },
+  cover: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true
