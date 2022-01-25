@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import out from '../helpers/response';
+import { allAlbum } from '../helpers/iterator';
 import AlbumService from '../database/services/Album';
 
 class AlbumController {
@@ -21,7 +22,8 @@ class AlbumController {
   static async FetchallAlbum(req, res) {
     try {
       const albums = await AlbumService.fetchAllAlbum();
-      return out(res, 200, 'Albums', albums);
+      const response = await allAlbum(albums);
+      return out(res, 200, 'Albums', response);
     } catch (error) {
       return out(res, 500, error.message || error, null, 'SERVER_ERROR');
     }
