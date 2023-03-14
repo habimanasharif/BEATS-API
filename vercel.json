@@ -2,7 +2,7 @@
     "version":2,
     "build":[
         {
-            "src":"./index.js",
+            "src":"./build/server.js",
             "use":"@vercel/node"
         }
     ],
@@ -11,5 +11,7 @@
             "src":"/(.*)",
             "dest":"/"
         }
-    ]
+    ],
+    "outputDirectory": "build",
+    "buildCommand": "rm -rf ./build && babel ./src/. --out-dir ./build --copy-files"
 }
