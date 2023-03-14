@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines":{
+    "node":"14.x"
+  },
   "scripts": {
     "build": "rm -rf ./build && babel ./src/. --out-dir ./build --copy-files",
     "start": "npm run build && node ./build/server.js",
